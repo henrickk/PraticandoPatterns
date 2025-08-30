@@ -54,49 +54,57 @@ namespace PraticandoPatterns
 
 
             //Exercício Prático - Factory Method
-            Console.Write("Digite o valor do pedido: ");
-            if (!decimal.TryParse(Console.ReadLine(), out var valorPedido))
-            {
-                Console.WriteLine("Valor inválido!");
-                return;
-            }
+            //Console.Write("Digite o valor do pedido: ");
+            //if (!decimal.TryParse(Console.ReadLine(), out var valorPedido))
+            //{
+            //    Console.WriteLine("Valor inválido!");
+            //    return;
+            //}
 
-            Console.WriteLine("Escolha a forma de pagamento:");
-            Console.WriteLine("1 - Cartão");
-            Console.WriteLine("2 - Pix");
-            Console.WriteLine("3 - Boleto");
-            Console.WriteLine("4 - Criptomoeda");
-            Console.Write("Opção: ");
+            //Console.WriteLine("Escolha a forma de pagamento:");
+            //Console.WriteLine("1 - Cartão");
+            //Console.WriteLine("2 - Pix");
+            //Console.WriteLine("3 - Boleto");
+            //Console.WriteLine("4 - Criptomoeda");
+            //Console.Write("Opção: ");
 
-            if (!int.TryParse(Console.ReadLine(), out var opcao))
-            {
-                Console.WriteLine("Opção inválida!");
-                return;
-            }
+            //if (!int.TryParse(Console.ReadLine(), out var opcao))
+            //{
+            //    Console.WriteLine("Opção inválida!");
+            //    return;
+            //}
 
-            IPagamentoFactory factory = opcao switch
-            {
-                1 => new CartaoFactory(),
-                2 => new PixFactory(),
-                3 => new BoletoFactory(),
-                4 => new CriptomoedaFactory(),
-                _ => null
-            };
+            //IPagamentoFactory factory = opcao switch
+            //{
+            //    1 => new CartaoFactory(),
+            //    2 => new PixFactory(),
+            //    3 => new BoletoFactory(),
+            //    4 => new CriptomoedaFactory(),
+            //    _ => null
+            //};
 
-            if (factory == null)
-            {
-                Console.WriteLine("Opção inválida!");
-                return;
-            }
+            //if (factory == null)
+            //{
+            //    Console.WriteLine("Opção inválida!");
+            //    return;
+            //}
 
-            IPagamento pagamento = factory.CriarPagamento();
-            var pedido = new Pedido
-            {
-                Valor = valorPedido,
-                FormaPagamento = pagamento
-            };
-            pedido.Processar();
-            Console.WriteLine("Pagamento processado com sucesso!");
+            //IPagamento pagamento = factory.CriarPagamento();
+            //var pedido = new Pedido
+            //{
+            //    Valor = valorPedido,
+            //    FormaPagamento = pagamento
+            //};
+            //pedido.Processar();
+            //Console.WriteLine("Pagamento processado com sucesso!");
+
+            //Exercício Prático - Singleton
+            var servicoDeUsuario = new Singleton.Models.ServicoDeUsuario();
+            servicoDeUsuario.CriarUsuario("joao123");
+            var servicoDePedido = new Singleton.Models.ServicoDePedido();
+            servicoDePedido.ProcessarPedido(101);
+
+
         }
     }
 }
