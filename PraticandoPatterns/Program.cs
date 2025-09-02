@@ -1,9 +1,10 @@
-﻿using PraticandoPatterns.Factory_Method.Factories;
-using PraticandoPatterns.Factory_Method.Interfaces;
-
-using PraticandoPatterns.Factory_Method.Models;
+﻿using PraticandoPatterns.Facade.Domain;
 using PraticandoPatterns.Facade.Facade;
-using PraticandoPatterns.Facade.Domain;
+using PraticandoPatterns.Facade.Infrastructure;
+using PraticandoPatterns.Facade.Services;
+using PraticandoPatterns.Factory_Method.Factories;
+using PraticandoPatterns.Factory_Method.Interfaces;
+using PraticandoPatterns.Factory_Method.Models;
 
 namespace PraticandoPatterns
 {
@@ -107,7 +108,40 @@ namespace PraticandoPatterns
 
 
             //Exercício Prático - Facade
-            
+            {
+                // 1. Criar dependências (injeção manual)
+                IVendaRepository vendaRepository = new VendaRepository();
+                ICalculadoraImpostos calculadoraImpostos = new CalcularImpostos();
+                ICalculadoraDescontos calculadoraDescontos = new CalcularDescontos();
+                IAgregadorRelatorio agregadorRelatorio = new AgregadorRelatorio();
+                IExportadorCsv exportadorCsv = new ExportarCsv();
+                INotificadorEmail notificadorEmail = new NotificacaoEmail();
+                ILogger logger = new Logger();
+
+                // 2. Criar a facade
+                var relatorioFacade = new RelatorioVendasFacade(
+                    vendaRepository,
+                    calculadoraImpostos,
+                    calculadoraDescontos,
+                    agregadorRelatorio,
+                    exportadorCsv,
+                    notificadorEmail,
+                    logger
+                );
+
+                // 3. Definir período e pasta de destino
+                var inicio = new DateTime(2024, 01, 01);
+                var fim = new DateTime(2024, 12, 31);
+                var pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "Relatorios");
+
+                if (!Directory.Exists(pastaDestino))
+                    Directory.CreateDirectory(pastaDestino);
+
+                // 4. Gerar relatório
+                relatorioFacade.GerarRelatorio(inicio, fim, pastaDestino, "teste@exemplo.com");
+
+                Console.WriteLine("Relatório gerado com sucesso!");
+            }
         }
     }
 }

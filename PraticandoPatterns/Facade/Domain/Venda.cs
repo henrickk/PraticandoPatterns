@@ -11,6 +11,7 @@ namespace PraticandoPatterns.Facade.Domain
         public int Id { get; set; }
         public DateTime Data { get; set; }
         public List<ItemVenda> Itens { get; set; } = new List<ItemVenda>();
+        public Cliente Cliente { get; set; }
         public decimal ValorTotal
         {
             get { return Itens.Sum(i => i.PrecoUnitario * i.Quantidade); }

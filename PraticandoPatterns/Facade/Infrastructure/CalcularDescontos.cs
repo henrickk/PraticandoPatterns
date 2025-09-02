@@ -10,13 +10,21 @@ namespace PraticandoPatterns.Facade.Infrastructure
 {
     public class CalcularDescontos : ICalculadoraDescontos
     {
-        public decimal Calcular(IEnumerable<Domain.Venda> vendas)
+        public decimal Calcular(IEnumerable<Venda> vendas)
         {
             // Implementação simples de cálculo de descontos
-            if ( NomeProduto == "PROMO")
+            // Aplica 5% de desconto apenas para vendas que possuem pelo menos um item "PROMO"
+            decimal desconto = 0m;
+
+            foreach (var venda in vendas)
             {
-                vendas.Sum(v => v.ValorTotal * 0.05m); // Exemplo: 5% de desconto sobre o valor total das vendas
+                if (venda.Itens != null && venda.Itens.Any(item => item.NomeProduto == "PROMO"))
+                {
+                    desconto += venda.ValorTotal * 0.05m;
+                }
             }
-            }
+
+            return desconto;
         }
+    }
 }

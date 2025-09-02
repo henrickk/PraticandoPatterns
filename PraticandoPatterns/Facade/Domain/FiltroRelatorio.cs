@@ -40,11 +40,13 @@ namespace PraticandoPatterns.Facade.Domain
         }
         private void ValidarCategoria()
         {
-            if (string.IsNullOrWhiteSpace(Categoria))
+            if (!string.IsNullOrWhiteSpace(Categoria))
             {
-                throw new ArgumentException("Categoria não pode ser nula ou vazia.");
+                var categoriasValidas = new List<string> { "Eletrônicos", "Roupas", "Alimentos" };
+                if (!categoriasValidas.Contains(Categoria))
+                    throw new ArgumentException("Categoria inválida.");
             }
-            // Adicione outras validações de categoria conforme necessário
         }
+
     }
 }

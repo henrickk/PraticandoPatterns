@@ -11,12 +11,13 @@ namespace PraticandoPatterns.Facade.Domain
         public int Id { get; set; }
         public string Nome { get; set; }
 
-        void ValidarCliente()
+        public void Validar()
         {
-            if (Cliente == null)
+            if (Id != 0 && (string.IsNullOrEmpty(Nome) || Nome.Length < 3))
             {
-                throw new ArgumentException("ClienteId fornecido, mas Cliente é nulo.");
+                throw new ArgumentException("Nome do cliente inválido.");
             }
+
         }
     }
 }
