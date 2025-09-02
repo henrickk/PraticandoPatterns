@@ -1,4 +1,5 @@
-﻿using PraticandoPatterns.Facade.Services;
+﻿using PraticandoPatterns.Facade.Domain;
+using PraticandoPatterns.Facade.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,9 @@ namespace PraticandoPatterns.Facade.Facade
             try
             {
                 _logger?.Info("Iniciando geração de relatório de vendas.");
-                var vendas = _vendaRepository.BuscarPor(dataInicio, dataFim);
+                var filtro = new FiltroRelatorio { DataInicio = dataInicio, DataFim = dataFim };
+                filtro.Validar();
+                var vendas = _vendaRepository.BuscarPor(filtro);
                 _logger?.Info($"Total de vendas obtidas: {vendas.Count()}");
                 var impostos = _calculadoraImpostos.Calcular(vendas);
                 _logger?.Info($"Total de impostos calculados: {impostos:C}");

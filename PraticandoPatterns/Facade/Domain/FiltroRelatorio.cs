@@ -16,17 +16,35 @@ namespace PraticandoPatterns.Facade.Domain
 
         public void Validar()
         {
-            if (DataInicio <= DataFim)
-            {
-                Console.WriteLine("Data válida.");
-            }
-
-            if (!ValidarData())
-                throw new ArgumentException("Data inválida: DataInicio > DataFim.");
-
+            ValidarData();
             ValidarCliente();
             ValidarCategoria();
         }
 
+        private void ValidarData()
+        {
+            if (DataInicio > DataFim)
+            {
+                throw new ArgumentException("DataInicio não pode ser maior que DataFim.");
+            }
+            // Adicione outras validações de data conforme necessário
+        
+        }
+        private void ValidarCliente()
+        {
+            if (ClienteId.HasValue && Cliente == null)
+            {
+                throw new ArgumentException("ClienteId fornecido, mas Cliente é nulo.");
+            }
+            // Adicione outras validações de cliente conforme necessário
+        }
+        private void ValidarCategoria()
+        {
+            if (string.IsNullOrWhiteSpace(Categoria))
+            {
+                throw new ArgumentException("Categoria não pode ser nula ou vazia.");
+            }
+            // Adicione outras validações de categoria conforme necessário
+        }
     }
 }

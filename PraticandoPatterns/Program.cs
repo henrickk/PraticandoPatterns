@@ -1,8 +1,9 @@
 ﻿using PraticandoPatterns.Factory_Method.Factories;
 using PraticandoPatterns.Factory_Method.Interfaces;
-using PraticandoPatterns.Factory_Method.Interfaces;
-using PraticandoPatterns.Factory_Method.Models;
 
+using PraticandoPatterns.Factory_Method.Models;
+using PraticandoPatterns.Facade.Facade;
+using PraticandoPatterns.Facade.Domain;
 
 namespace PraticandoPatterns
 {
@@ -99,12 +100,14 @@ namespace PraticandoPatterns
             //Console.WriteLine("Pagamento processado com sucesso!");
 
             //Exercício Prático - Singleton
-            var servicoDeUsuario = new Singleton.Models.ServicoDeUsuario();
-            servicoDeUsuario.CriarUsuario("joao123");
-            var servicoDePedido = new Singleton.Models.ServicoDePedido();
-            servicoDePedido.ProcessarPedido(101);
+            //var servicoDeUsuario = new Singleton.Models.ServicoDeUsuario();
+            //servicoDeUsuario.CriarUsuario("joao123");
+            //var servicoDePedido = new Singleton.Models.ServicoDePedido();
+            //servicoDePedido.ProcessarPedido(101);
 
 
+            //Exercício Prático - Facade
+            
         }
     }
 }
