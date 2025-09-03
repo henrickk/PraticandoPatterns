@@ -5,6 +5,7 @@ using PraticandoPatterns.Facade.Services;
 using PraticandoPatterns.Factory_Method.Factories;
 using PraticandoPatterns.Factory_Method.Interfaces;
 using PraticandoPatterns.Factory_Method.Models;
+using PraticandoPatterns.Observer.Domain;
 
 namespace PraticandoPatterns
 {
@@ -101,46 +102,68 @@ namespace PraticandoPatterns
             //Console.WriteLine("Pagamento processado com sucesso!");
 
             //Exercício Prático - Singleton
-            //var servicoDeUsuario = new Singleton.Models.ServicoDeUsuario();
-            //servicoDeUsuario.CriarUsuario("joao123");
-            //var servicoDePedido = new Singleton.Models.ServicoDePedido();
-            //servicoDePedido.ProcessarPedido(101);
+            var servicoDeUsuario = new Singleton.Domain.ServicoDeUsuario();
+            servicoDeUsuario.CriarUsuario("joao123");
+            var servicoDePedido = new Singleton.Domain.ServicoDePedido();
+            servicoDePedido.ProcessarPedido(101);
 
 
             //Exercício Prático - Facade
             {
                 // 1. Criar dependências (injeção manual)
-                IVendaRepository vendaRepository = new VendaRepository();
-                ICalculadoraImpostos calculadoraImpostos = new CalcularImpostos();
-                ICalculadoraDescontos calculadoraDescontos = new CalcularDescontos();
-                IAgregadorRelatorio agregadorRelatorio = new AgregadorRelatorio();
-                IExportadorCsv exportadorCsv = new ExportarCsv();
-                INotificadorEmail notificadorEmail = new NotificacaoEmail();
-                ILogger logger = new Logger();
+                //IVendaRepository vendaRepository = new VendaRepository();
+                //ICalculadoraImpostos calculadoraImpostos = new CalcularImpostos();
+                //ICalculadoraDescontos calculadoraDescontos = new CalcularDescontos();
+                //IAgregadorRelatorio agregadorRelatorio = new AgregadorRelatorio();
+                //IExportadorCsv exportadorCsv = new ExportarCsv();
+                //INotificadorEmail notificadorEmail = new NotificacaoEmail();
+                //ILogger logger = new Logger();
 
                 // 2. Criar a facade
-                var relatorioFacade = new RelatorioVendasFacade(
-                    vendaRepository,
-                    calculadoraImpostos,
-                    calculadoraDescontos,
-                    agregadorRelatorio,
-                    exportadorCsv,
-                    notificadorEmail,
-                    logger
-                );
+                //var relatorioFacade = new RelatorioVendasFacade(
+                //    vendaRepository,
+                //    calculadoraImpostos,
+                //    calculadoraDescontos,
+                //    agregadorRelatorio,
+                //    exportadorCsv,
+                //    notificadorEmail,
+                //    logger
+                //);
 
                 // 3. Definir período e pasta de destino
-                var inicio = new DateTime(2024, 01, 01);
-                var fim = new DateTime(2024, 12, 31);
-                var pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "Relatorios");
+                //var inicio = new DateTime(2024, 01, 01);
+                //var fim = new DateTime(2024, 12, 31);
+                //var pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "Relatorios");
 
-                if (!Directory.Exists(pastaDestino))
-                    Directory.CreateDirectory(pastaDestino);
+                //if (!Directory.Exists(pastaDestino))
+                //    Directory.CreateDirectory(pastaDestino);
 
-                // 4. Gerar relatório
-                relatorioFacade.GerarRelatorio(inicio, fim, pastaDestino, "teste@exemplo.com");
+                //// 4. Gerar relatório
+                //relatorioFacade.GerarRelatorio(inicio, fim, pastaDestino, "teste@exemplo.com");
 
-                Console.WriteLine("Relatório gerado com sucesso!");
+                //Console.WriteLine("Relatório gerado com sucesso!");
+
+                // Exercício Prático - Observer
+                var estoque = new Estoque();
+
+                var vendas = new SistemaVendas();
+                var relatorios = new SistemaRelatorios();
+                var email = new NotificadorEmail();
+
+                // Registrar observadores
+                estoque.Registrar(vendas);
+                estoque.Registrar(relatorios);
+                estoque.Registrar(email);
+
+                // Alterações de estoque
+                estoque.AlterarEstoque("Notebook", 10);
+                estoque.AlterarEstoque("Notebook", 4);
+                estoque.AlterarEstoque("Mouse", 2);
+
+                Console.WriteLine("\nRemovendo relatório do Observer...");
+                estoque.Remover(relatorios);
+
+                estoque.AlterarEstoque("Teclado", 3);
             }
         }
     }

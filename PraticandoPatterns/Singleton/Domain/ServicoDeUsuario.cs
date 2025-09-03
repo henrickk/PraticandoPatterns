@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PraticandoPatterns.Singleton.Models
+namespace PraticandoPatterns.Singleton.Domain
 {
     public class ServicoDeUsuario
     {
@@ -16,7 +16,7 @@ namespace PraticandoPatterns.Singleton.Models
         public void CriarUsuario(string nomeUsuario)
         {
             _logger.Log($"Criando usuário {nomeUsuario}");
-            // Lógica para criar o usuário
+            
             _logger.Log($"Usuário {nomeUsuario} criado com sucesso");
         }
     }

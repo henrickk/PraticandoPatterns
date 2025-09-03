@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PraticandoPatterns.Singleton.Models
+namespace PraticandoPatterns.Singleton.Domain
 {
     public class ServicoDePedido
     {
@@ -16,7 +16,7 @@ namespace PraticandoPatterns.Singleton.Models
         public void ProcessarPedido(int pedidoId)
         {
             _logger.Log($"Processando pedido {pedidoId}");
-            // Lógica para processar o pedido
+            
             _logger.Log($"Pedido {pedidoId} processado com sucesso");
         }
 
