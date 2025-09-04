@@ -12,8 +12,6 @@ namespace PraticandoPatterns.Facade.Infrastructure
     {
         public decimal Calcular(IEnumerable<Venda> vendas)
         {
-            // Implementação simples de cálculo de descontos
-            // Aplica 5% de desconto apenas para vendas que possuem pelo menos um item "PROMO"
             decimal desconto = 0m;
 
             foreach (var venda in vendas)

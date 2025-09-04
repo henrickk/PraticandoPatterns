@@ -27,7 +27,7 @@ namespace PraticandoPatterns.Facade.Domain
             {
                 throw new ArgumentException("DataInicio não pode ser maior que DataFim.");
             }
-            // Adicione outras validações de data conforme necessário
+            
         
         }
         private void ValidarCliente()
@@ -36,7 +36,7 @@ namespace PraticandoPatterns.Facade.Domain
             {
                 throw new ArgumentException("ClienteId fornecido, mas Cliente é nulo.");
             }
-            // Adicione outras validações de cliente conforme necessário
+            
         }
         private void ValidarCategoria()
         {

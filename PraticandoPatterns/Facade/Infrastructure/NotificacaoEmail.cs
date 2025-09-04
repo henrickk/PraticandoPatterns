@@ -11,12 +11,10 @@ namespace PraticandoPatterns.Facade.Infrastructure
     {
         public void Enviar(string emailDestino, string assunto, string corpo, string anexoCaminho)
         {
-            // Simula o envio de email
             Console.WriteLine($"Enviando email para: {emailDestino}");
             Console.WriteLine($"Assunto: {assunto}");
             Console.WriteLine($"Corpo: {corpo}");
             Console.WriteLine($"Anexo: {anexoCaminho}");
-            // Aqui você poderia integrar com um serviço real de envio de emails
         }
     }
 }

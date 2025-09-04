@@ -12,7 +12,7 @@ namespace PraticandoPatterns.Facade.Infrastructure
     {
         public decimal Calcular(IEnumerable<Venda> vendas)
         {
-            return vendas.Sum(v => v.ValorTotal * 0.08m); // Exemplo: 8% de imposto sobre o valor total das vendas
+            return vendas.Sum(v => v.ValorTotal * 0.08m);
         }
     }
 }

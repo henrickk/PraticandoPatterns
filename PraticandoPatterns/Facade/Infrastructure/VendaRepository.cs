@@ -12,7 +12,6 @@ namespace PraticandoPatterns.Facade.Infrastructure
     {
         public IEnumerable<Venda> BuscarPor(FiltroRelatorio filtro)
         {
-            // Simulação de dados. Em um cenário real, isso buscaria em um banco de dados.
             var vendas = new List<Venda>
             {
                 new Venda { Id = 1, Data = new DateTime(2024, 1, 15) },
@@ -20,7 +19,6 @@ namespace PraticandoPatterns.Facade.Infrastructure
                 new Venda { Id = 3, Data = new DateTime(2024, 3, 10) },
                 new Venda { Id = 4, Data = new DateTime(2024, 4, 5) },
             };
-            // IDE0090: Simplificação da expressão 'new'
             return vendas.Where(v => v.Data >= filtro.DataInicio && v.Data <= filtro.DataFim);
         }
     }
